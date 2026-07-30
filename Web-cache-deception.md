@@ -43,8 +43,70 @@ Some parsers stop reading the "path" at a delimiter character, treating everythi
 List of delimiters worth fuzzing (raw and URL-encoded forms — always test both, since the cache and origin may decode inconsistently):
 
 ```
-!  "  #  $  %  &  '  (  )  *  +  ,  -  .  /  :  ;  <  =  >  ?  @  [  \  ]  ^  _  `  {  |  }  ~
-%21 %22 %23 %24 %25 %26 %27 %28 %29 %2A %2B %2C %2D %2E %2F %3A %3B %3C %3D %3E %3F %40 %5B %5C %5D %5E %5F %60 %7B %7C %7D %7E
+!
+"
+#
+$
+%
+&
+'
+(
+)
+*
++
+,
+-
+.
+/
+:
+;
+
+=
+>
+?
+@
+[
+\
+]
+^
+__
+`
+{
+|
+}
+~
+%21
+%22
+%23
+%24
+%25
+%26
+%27
+%28
+%29
+%2A
+%2B
+%2C
+%2D
+%2E
+%2F
+%3A
+%3B
+%3C
+%3D
+%3E
+%3F
+%40
+%5B
+%5C
+%5D
+%5E
+%5F
+%60
+%7B
+%7C
+%7D
+%7E
 ```
 
 `#` and `?` are especially interesting since many frameworks treat everything after them (fragment/query string) as non-path, but some caches include the query string in the file-extension check.
