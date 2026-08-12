@@ -21,7 +21,7 @@ postMessage data (message event)
 localStorage / sessionStorage
 ```
 
-## [[DOM XSS]]
+## DOM XSS
 
 DOM XSS is a type of Cross-Site Scripting where the vulnerability exists entirely in client-side code: the page takes attacker-controlled data from a **source** and passes it to a **sink** that supports dynamic code execution or HTML rendering — the server never even sees the malicious payload, which makes DOM XSS invisible to server-side logs/WAFs that only inspect requests.
 
@@ -44,7 +44,7 @@ jQuery: $(), .html(), .append()
 
 Testing methodology: trace each source above through the page's JavaScript (browser DevTools → search for the source string, or use a proxy-based tool like Burp's DOM Invader) to see if it reaches any of the sinks above unmodified.
 
-## [[Reflected XSS]]
+## Reflected XSS
 
 Reflected XSS occurs when the application takes unsafe input (typically a query parameter or search field) and reflects it back **immediately** in the response, without persisting it server-side. Requires tricking the victim into clicking a crafted link.
 
@@ -85,11 +85,11 @@ expression(alert(document.domain))  <!-- legacy IE only -->
 
 Always test payload variants around **filter evasion**: case variation (`<ScRiPt>`), encoding (HTML entities, URL encoding, Unicode), event handler variety (`onerror`, `onload`, `onfocus`, `onmouseover`), and alternative tags (`<svg>`, `<details open ontoggle=...>`, `<iframe srcdoc=...>`) if the obvious `<script>` tag gets filtered/CSP-blocked.
 
-## [[Stored XSS]]
+## Stored XSS
 
 Stored (persistent) XSS uses the same payload set as reflected XSS, but the payload is saved server-side (e.g. in a comment, profile field, or message) and served back to **every user who views that content** — no need to trick each victim individually, which makes it substantially higher impact than reflected XSS for the same payload.
 
-## [[DOM Clobbering]]
+## DOM Clobbering
 
 DOM Clobbering is a technique where an attacker injects HTML (without executing any JavaScript directly — useful when script tags/event handlers are filtered but arbitrary HTML injection is still possible) to manipulate the DOM and, through it, the page's own JavaScript logic. It typically abuses the browser behavior where elements with an `id` or `name` attribute are automatically exposed as **named properties on `window`** (or on their containing element), letting an attacker overwrite what a script *expects* to be a safe global variable or `undefined`.
 
@@ -120,7 +120,7 @@ Other useful clobbering primitives:
 
 DOM Clobbering is frequently used as a **CSP bypass / gadget chain starting point** in combination with Prototype Pollution (see below), especially when the CSP blocks inline scripts but the page loads a script whose `src` is built from a clobberable variable.
 
-## [[Prototype Pollution]]
+## Prototype Pollution
 
 Prototype Pollution is a security vulnerability that allows an attacker to inject properties into JavaScript's global `Object.prototype`, affecting **every object** in the application that inherits from it (which, by default, is virtually all of them).
 
