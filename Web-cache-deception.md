@@ -17,10 +17,10 @@ A `MISS`/`EXPIRED`/`BYPASS`/`DYNAMIC` value on a repeat request is a strong sign
 
 Here are the core techniques:
 
-[[Path mapping discrepancies]]
-[[delimiter discrepancies]]
-[[URL Normalization discrepancies by the origin server]]
-[[URL Normalization discrepancies by the proxy server]]
+Path mapping discrepancies]]
+delimiter discrepancies]]
+URL Normalization discrepancies by the origin server
+URL Normalization discrepancies by the proxy server
 
 ### Path mapping discrepancies
 
