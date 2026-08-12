@@ -27,7 +27,7 @@ To successfully exploit a web cache poisoning vulnerability, you first need to f
 
 Below are common unkeyed-input categories and example payloads for each.
 
-- [[Unkeyed header]]
+- Unkeyed header
 
   Headers are very commonly unkeyed even when their value is used server-side (canonical URLs, redirect targets, CORS reflection, etc.):
 
@@ -39,7 +39,7 @@ Below are common unkeyed-input categories and example payloads for each.
 
   If `X-Forwarded-Host` gets reflected into an absolute URL, canonical `<link>` tag, or a resource `src` attribute in the cached page, you can point it at an attacker-controlled domain and serve malicious JS/CSS to every subsequent visitor.
 
-- [[Unkeyed query parameter]]
+- Unkeyed query parameter
 
   Tracking/analytics parameters (`utm_content`, `utm_source`, `ref`, `fbclid`) are frequent offenders — they're intentionally excluded from cache keys (so `?utm_source=twitter` and `?utm_source=facebook` don't fragment the cache) but are often still reflected server-side for logging or personalization:
 
@@ -48,7 +48,7 @@ Below are common unkeyed-input categories and example payloads for each.
   Host: vulnerable-example.com
   ```
 
-- [[Fat GET request]]
+- Fat GET request
 
   Some servers accept a request body on a `GET` request and process it identically to query parameters, while the cache only keys on the URL/query string and ignores the body entirely:
 
@@ -63,7 +63,7 @@ Below are common unkeyed-input categories and example payloads for each.
 
   Because the cache key is derived only from the URL, an attacker can poison the cache via the body while every subsequent (bodyless) `GET /` to that same URL serves the poisoned response.
 
-- [[Unkeyed cookie]]
+- Unkeyed cookie
 
   Cookies used for A/B testing, language/locale preferences, or feature flags are also commonly excluded from the cache key while still being reflected or used to alter the response:
 
