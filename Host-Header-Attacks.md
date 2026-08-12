@@ -70,7 +70,7 @@ Useful for probing SSRF-style behavior when the application makes internal callb
 
 If you've found an **unkeyed** header (the cache doesn't include it in the cache key, but the origin reflects its value into the response — e.g. a duplicated `Host` header, or an `X-Forwarded-Host` value dropped into a canonical link tag or absolute URL), and that reflected response gets cached, you can poison the cache: every subsequent visitor requesting that same cached URL receives your injected content (e.g. a malicious `<script>` src pointed at your domain).
 
-### [[Server Side vulnerabilities]]
+### Server Side vulnerabilities
 
 Probe the `Host` header for classic server-side injection, since it's frequently passed unsanitized into backend logic:
 
@@ -78,7 +78,7 @@ Probe the `Host` header for classic server-side injection, since it's frequently
 - **OS Command Injection** — if the Host value is passed to a shell command (e.g. for generating internal certs, logging, or virtual-host resolution)
 - **Header/Log Injection** — CRLF sequences in the Host value reflected into logs or headers
 
-### [[Routing based SSRF]]
+### Routing based SSRF
 
 Routing-based SSRF is a more dangerous variant of classic SSRF: instead of the *application* making an outbound request to an attacker-controlled URL, you abuse the **routing/infrastructure layer itself** (load balancers, reverse proxies, service meshes) which is prevalent in cloud-native architectures. By manipulating the `Host` header, you can potentially get the front-end infrastructure to route your request to an unintended back-end service — internal admin panels, other tenants' services, or cloud metadata endpoints — that would otherwise be unreachable from the public internet.
 
