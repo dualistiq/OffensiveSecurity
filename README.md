@@ -2,7 +2,7 @@
 
 ## Offensive Security Cheat Sheets
 
-Personal notes and cheat sheets for offensive security / bug bounty, written for use in Obsidian (hence the [[backlinks]]). Compiled while studying TryHackMe, HackTheBox, PortSwigger Web Security Academy, and HackTricks
+Personal notes and cheat sheets for offensive security / bug bounty, written for use in Obsidian. Compiled while studying TryHackMe, HackTheBox, PortSwigger Web Security Academy, and HackTricks
 
 ⚠️ Disclaimer
 
