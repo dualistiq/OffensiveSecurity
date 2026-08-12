@@ -14,15 +14,15 @@ This list is defined entirely by the application's logic and is **not limited** 
 
 ## Types of race conditions
 
-### [[Limit overrun race conditions]]
+### Limit overrun race conditions
 
 The classic case: an operation is supposed to be limited to a single use (redeem one gift card once, apply one discount code once, submit one vote once), but sending many identical requests **simultaneously** causes the limit check to pass for more than one of them, because each request reads the "not yet used" state before any of them has finished writing the "used" state back.
 
-### [[Time-of-check to time-of-use (TOCTOU)]]
+### Time-of-check to time-of-use (TOCTOU)
 
 A broader class where there's a gap between when a condition is *checked* and when it's *used/acted upon*, and that gap is exploitable regardless of whether a hard "limit" is involved — e.g. checking a file's permissions and then operating on it, or checking session validity and then performing a privileged action, with attacker-controlled state changing in between.
 
-### [[Multi-endpoint race conditions]]
+### Multi-endpoint race conditions
 
 Instead of racing many identical requests against a **single** endpoint, this abuses the timing gap **between two different endpoints** — e.g. racing a "change email" request against an "email verification" request, or racing "add item to cart" against "apply discount" and "checkout", so that state changes on one endpoint aren't yet reflected when the other endpoint reads it.
 
