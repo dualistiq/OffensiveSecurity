@@ -16,7 +16,7 @@ Access-Control-Allow-Headers: <headers>
 
 Many real-world CORS implementations are insecure and exploitable. Here are the common patterns:
 
-## [[Basic Origin Reflection]]
+## Basic Origin Reflection
 
 The server blindly reflects whatever `Origin` header the client sends back into `Access-Control-Allow-Origin`, instead of validating it against an allowlist. Send a request with an attacker-controlled origin:
 
@@ -54,7 +54,7 @@ xhr.send();
 - **Protocol/port confusion** — some checks validate the hostname but ignore scheme/port, so `http://normal-domain.com` or `normal-domain.com:4433` may still be trusted even though it's a different origin per the browser's definition.
 - **Pre-flight bypass** — if the server allows `Access-Control-Allow-Methods: *` or reflects arbitrary custom headers in `Access-Control-Allow-Headers`, non-simple requests (e.g. `PUT`, `DELETE`, JSON bodies) may be exploitable too, not just simple `GET` requests.
 
-## [[null Origin Reflection]]
+## null Origin Reflection
 
 Some applications explicitly trust the literal string `Origin: null` — often added to accommodate legitimate `null`-origin contexts like sandboxed iframes, `file://` pages, or redirects — without realizing an attacker can trivially generate a `null` origin themselves via a sandboxed iframe.
 
