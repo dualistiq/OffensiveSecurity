@@ -2,8 +2,8 @@ File Inclusion and Path Traversal are vulnerabilities in which an application al
 
 Types of File Inclusion:
 
-[[Local File Inclusion]]
-[[Remote File Inclusion]]
+Local File Inclusion
+Remote File Inclusion
 
 - **LFI** — the application includes/executes a file that already exists **within the server's own filesystem**. Classic example: `?page=../../../etc/passwd`. In languages that `include()`/`require()` files as executable code (PHP being the most common target), LFI can escalate directly to code execution if the attacker can influence the *contents* of the included file (see LFI2RCE below).
 
@@ -41,7 +41,7 @@ C:\inetpub\wwwroot\web.config     # IIS config, may leak connection strings
 
 LFI alone only grants **file read**. To escalate to **remote code execution**, you need to either (a) get attacker-controlled content into a file that the traversal can then include/execute, or (b) abuse a wrapper/stream that executes code as a side effect of being read. Common methods:
 
-### [[Log Poisoning]]
+### Log Poisoning
 
 Send a request where a normally-logged field (User-Agent, Referer, a 404'd URL, a failed login username) contains a PHP payload, e.g.:
 
@@ -57,7 +57,7 @@ The web server logs this raw string verbatim (typically `/var/log/apache2/access
 
 Requires the LFI to have read access to the log path (log paths and permissions vary widely by distro/stack — verify the actual path if you have any way to enumerate it, e.g. via a separate LFI read of a config file).
 
-### [[PHP wrappers]]
+### PHP wrappers
 
 PHP's stream wrappers can be abused to convert an LFI read primitive into code execution, without needing to poison an external file at all.
 
